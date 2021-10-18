@@ -1,0 +1,39 @@
+
+require:
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/SymbolConversion:
+  Enabled: false
+  Exclude:
+    - 'reponaut.rb'
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*'
+    - 'spec/linters/**/*'
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/ExpectInHook:
+  Exclude:
+    - 'spec/requests/**/*'
+RSpec/MessageSpies:
+  Exclude:
+    - 'spec/requests/**/*'

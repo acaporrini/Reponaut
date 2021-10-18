@@ -1,0 +1,48 @@
+<form action="/repos/search" method="get" id="search" class="uk-form">
+  <div class="uk-margin">
+    <label>
+    Search Term:
+      <div class="uk-form-controls">
+          <input class="uk-input" type="text" id="term" name="term" value="<%= @term %>">
+      </div>
+    </label>
+  </div>
+  <div class="uk-margin">
+      <label>
+        Search in:
+        <select class="uk-select" id="search_in" name="search_in" >
+            <option <%= "selected" if @search_in == "name" %> value="name">Name</option>
+            <option <%= "selected" if @search_in == "description" %> value="description">Description</option>
+        </select>
+      </label>
+  </div>
+  <div class="uk-margin">
+    <div class="uk-form-controls">
+      <input class="uk-button uk-button-default" type="submit">
+    </div>
+  </div>
+</form>
+
+<div class="uk-container">
+  <% if @alert %>
+    <div class="uk-container-xsmall uk-position-center uk-alert-danger">
+        <p><%= @alert %></p>
+    </div>
+  <% elsif @repos.empty? %>
+    Type a repo name and click search!
+  <% end %>
+
+  <dl class="uk-description-list">
+    <% @repos.each do |r| %>
+      <dt><a href="<%= r.url %>" target="blank"><%= r.name %></a></dt>
+      <dd><%= r.description %></dd>
+    <% end %>
+  </dl>
+
+  <% if @pagy && @pagy.pages > 1 %>
+    <hr class="uk-divider-icon">
+    <div class="uk-text-center">
+      <%= pagy_nav(@pagy) %>
+    </div>
+  <% end %>
+</div>
